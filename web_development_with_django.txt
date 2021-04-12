@@ -1,0 +1,147 @@
+Web Development with Django - Ben Shaw (Notes)
+
+virtualenv - keeps python packages separate from system packages
+
+Install virtualenv:
+    Mac -
+        pip3 install virtualenv
+        python3 -m virtualenv <virtualenvname>
+
+    Windows -
+        python -m venv <virtualenvname>
+        <virtualenvname>\Scripts\activate
+
+Install Django
+    (virtualenvname) $ pip3 install django
+
+Django 3.0 vs 3.1
+    3.1 - uses BASE_DIR w/ pathlib.Path object
+        - need to add import os to settings.py (mimic 3.0 standards)
+    3.0 - uses BASE_DIR w/ string
+
+MVT - Model View Template
+
+"Batteries Included" = adjective for framework that don't required many libraries to run application
+
+Create Django Project
+    - <virtualenvname>\Scripts\activate
+    - django-admin startproject <projectname>
+    - cd <projectname>
+    - python3 manage.py runserver
+    - http://127.0.0.1:8000/
+
+Model:
+
+MVC - Model View Controller
+    - where model (data) is displayed on view(s), and controller interates between model and view
+    - all components need to be same language
+
+MVT - Model View Template
+    - also has model, but view queries a model and render it with a template
+    - template can be different language
+
+ORM - Object Relational Mapper
+    - define data schema using language code, w/o underlying database knowledge
+    = protected from (common) SQL injections
+
+SQL - Structured Query Language
+    - a type of database that stores data on table with rows
+    - tables can have relationship between other tables
+
+NoSql - Non SQL
+    - a type of database that stores data not with table
+
+Views - query data from model and using response to render template
+
+Templates - HyperText Markup Language (HTML)
+    - can generate w/o model data (static)
+
+MVT in Practice
+    - can use multiple models, views, for 1 template
+
+HTTP
+    - example: web browsers sends HTTP request to web server when URL is entered
+    - 4 parts
+        - Method
+        - Path
+        - Headers
+        - Body (some request don't have body, eg. visit a page)
+
+HTTP Headers
+    - Host - required header; lets server know which website/application should response to request
+    - User-Agent - identifies version and operating system (eg. mobile view)
+    - Cookie - store data on browser
+    - Content-Type - identifies type of data in body
+        - application/x-www-form-urlencoded - body is set of key-value pairs
+        - JSON
+        - XML
+    - Content-Length - tells server how much data to read
+    - Server - server telling client version and operating system
+    - Set-Cookie - server send on response to set cookie
+    - many more; Authorization, Accept, Accept-Language, etc...
+
+HTTP Response
+    - Status
+    - Headers
+    - Body (not always)
+
+HTTP Status Codes
+    - 100-199 - indicate protocol changes or more data required (don't need to worry)
+    - 200-299 - successful
+    - 300-399 - moved to another address (short url redirect to full url)
+    - 400-499 - fail
+        - 404 - Not Found - client request data that doesn't exist
+        - 403 - Forbidden - no access to data
+    - 500-599 - server fail
+        - 500 - Internal Server Error - exception raised
+        - 504 - Gateway Timeout - Taking too long to run
+        - 502 - Bad Gateway - problem with hosting
+        - 503 - Service Unavailable
+
+Processing a Request
+    - View query the database (model)
+    - Django maps URL config file to find corresponding view
+    - Calls the view with HttpRequest
+    - View return HttpResponse
+    - Sends to Client
+
+manage.py
+    - script that manages Django project
+    - commands:
+        - runserver
+        - startapp - creates new Django project
+        - shell - start Python interpreter w/ Django settings preloaded (use for interacting w/ app without manually load Django setting)
+        - dbshell - start interactive shell connected to db
+        - makemigrations - generate db change instructions from model definition
+        - migrate - apply migrations frmo makemigrations
+        - test - run automated tests
+
+Files in Django
+    - __init__.py - empty file that lets python know directory is Python module
+    - settings.py - django settings
+    - urls.py - global URL mappings used to locate view
+    - asgi.py and wsgi.py - web servers use to communicate with Django app on production
+    - admin.py - built in admin site for viewing and editing w. Graphical User Interface (GUI)
+    - apps.py - some configuration for metedata of app
+    - models.py - define models for app
+    - migrations - migrations files for model changes
+    - tests.py - test code
+    - views.py - views
+
+Run Server on Different Port - python3 manage.py runserver 8001
+
+Django reloads automatically on code change (need to refresh browser though)
+
+Setup PyCharm for Django
+    - open project
+    - add Project Interpreter (pointing to virtualenv's python.exe)
+        - mac - /Users/<yourusername>/.virtualenvs/bookr/bin/python3.
+        - windows - whereever you created virtualenv
+    - Add Configuration  (button)
+        - Name = Django Dev Server (whatever you like)
+        - Script Path = manage.py file
+        - Parameters = runserver
+        - Working Directory = Django Project Directory
+        - Check Add Content & Source Root to PythonPath
+        * can now runserver with play button
+
