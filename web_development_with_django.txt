@@ -30,6 +30,10 @@ Create Django Project
     - python3 manage.py runserver
     - http://127.0.0.1:8000/
 
+Create an Model/App
+    - python manage.py startapp <modelname>
+    * app - application that does something; projects - collection of configs and apps
+
 Model:
 
 MVC - Model View Controller
@@ -144,4 +148,31 @@ Setup PyCharm for Django
         - Working Directory = Django Project Directory
         - Check Add Content & Source Root to PythonPath
         * can now runserver with play button
+
+urls.py ->  urlpatterns
+    - list of paths Django evaluates until it finds a match for URL requested
+    - will resolve to view function or to another urls.py file
+    - urls maps can be multiple files
+
+rules - string to match path of request's path (eg. path('admin/', admin.site.urls)
+    - set inside urlpatterns
+    - admin.sites.urls module will define remainder of paths
+
+re_path function
+    - similar to path except takes regular expression as the first argument
+
+Write a View and Mapping Url to It
+    - python manage.py startapp <modelname> (create model)
+    - add to views.py of model
+        from django.http import HttpResponse
+
+        def index(request):
+            return HttpResponse("Hello, world!")
+    - add import and url map to urls.py
+        import reviews.views
+
+        urlpatterns = [
+            path('admin/', admin.site.urls),
+            path('', reviews.views.index),
+        ]
 
