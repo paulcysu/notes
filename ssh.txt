@@ -1,0 +1,131 @@
+SSH - (remote access to server)
+    - ssh root@<ip_address>
+    - sudo apt-get install <package>
+
+Scenario: Need to reinstall project on work server from home
+    - ssh root@<work_ip_address>
+    - sudo apt-get install npm
+    - git clone <git@httpspath>
+    - cd <project>
+    - sudo apt-get install nodejs
+    - npm install
+
+Scenario: Want to file local file to server
+    - cd ../localfolder
+    - rsync -av . root@<server_ip_address>:~/localfolder
+
+3 SSH Techiniques:
+    1. Symmtrical Encryption
+        - shared key can decrypt data
+        - con: if key exposed
+        - Key Exchange Algorithm
+    2. Asymmetrical Encryption
+        - public and private key
+        - public can be exposed but never private
+        - public key can only be decrypted by private key
+        - Diffie Hellman Key Exchange
+        - Assymetrical Encryption is time comsuming and use to shared secret key
+    3. Hashing
+
+Diffie Hellman Key Exchange
+    - Example: Alice and Bob want to share data in a public area
+        - Alice and Bob need to agree with mathematical parameters to use (g, n) 
+        - Alice and Bob each have own private value (a, b)
+            - private key are never shared
+        - Alice and Bob each create public key to share with their own private key (ag, bg)
+            - public key can't be undo; created predict private key used
+        - Alice takes bg public and add her private key (abg)
+        - Bob takes ag public and add his private key (abg)
+        - Now Alice and Bob have a shared secret which is impossible for hackers to know
+
+Diffie Hellman Key Exchange (Math):
+    - public variable (g, n)
+        - g is a small prime number
+        - n is big (2000 or 4000 bits long)
+    - Alice and Bob picks random numbers (a, b)
+    - Alice calculates g^a mod n
+        - mod n like a locker wheel, 0 - infinity
+        - so g^a mod n, will be a value on this locker/wheel
+    - Bob calculates g^b mod n
+    - g^a mod n & g^b mod n are public keys
+    - Alice takes public key and calculates (g^b)^a mod n
+    - Bob calculates (g^a)^b mod n
+    - (g^b)^a mod n & (g^a)^b mod n are the same
+        - since power of a power is the same no matter the order
+        - g^ab mod n = g^ab mod n
+            - above values are between 0 - n
+    
+Diffie Hellman Attacks:
+    - Sean see in the public environment
+    - Alice send public key (ag)
+    - Sean catches and creates shared secret with Alice (ags)
+    - Bob sends to Alice (bg)
+    - Sean catches and creates shared secret with Bob (bgs)
+    - Now Sean is the middleman and can read/manipulate data before sending to the other
+
+Hashing / RSA:
+    - Alice send Bob public key (ag)
+    - Bob, to prevent middleman, send created public key (bg) w/ hashed private key h(gb)
+    - Alice uses Bob's public key to decrypt h(bg)
+    - Sean can't catch and decrypt the same way as Bob
+    - RSA is slow, so not used for every message
+
+RSA is used with Diffie Hellman in many places (TLC, HTTPS, etc...)
+
+Elliptic Curse:
+    - a different way to prevent private key extraction from public key (a)
+    - ag - add g on a elliptic curve and flip, so 2g, 3g, 4g to "a" amount on time
+    - can't decrypt a from ag, because can't tell amount on times g add onto itself on a big graph
+    - idea is more complicate but mathematical more simple/efficient
+    - private and public keys are x and y coordinates on graph
+    
+RSA:
+
+Create Public & Private Key pair:
+    - ssh-keygen
+
+ls -a : to show hidden files
+
+How to connect SSH with server
+    - create private and public key with
+        - ssh-keygen -C "youremail@here.com"
+    - create a server with auth ssh and give public key
+    - or ssh into server and add public key into .ssh/authorized_keys
+    - sudo nano /etc/ssh/sshd_config
+        - change:
+            - PasswordAuthentication yes
+            - PermitRootLogin yes
+            - PubkeyAuthentication yes
+            - AuthorizedKeysFile .ssh/authorized_keys
+    - restart sshd - systemctl restart sshd
+    - if more than one key in .ssh folder
+        - connect to right key
+            - ~/.ssh ssh-add ~/.ssh/id_rsa_digitalocean
+
+For Windows use PuTTy
+    - import or create private & public key with format .ppk
+    - enter server ip address and go to connection -> auth -> browser for private key
+    - save settings on general section again
+    - login as root
+
+Recommended ssh-keygen command:
+- ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+
+Window SSH Github:
+    - eval($ssh-agent -s) - start ssh-agent
+    - ssh-add ~/.ssh/id_rsa - add key to ssh-agent
+    - ssh -T git@github.com - test connection
+    - git clone git@github.com:etc.... - clone
+
+* need to start and add key on every new instance of terminal
+
+Tunneling through Computers
+- ssh -tt root@ip ssh -tt root@ip2 ssh -tt ...
+
+
+
+
+
+
+
+

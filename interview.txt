@@ -1,0 +1,174 @@
+Interview Notes
+
+Great resume requires great experience; vice versa.
+    - Ask for more challenging projects at work
+    - Use nights and weekends to build/learn different projects
+
+Stigmas:
+    - Enterprise Languages - some langauges, like Visual Basic, is look down as easy
+    - Being too language focused
+    - Certifications
+    - Knowing only one or two Languages - lack experience or can't learn new Languages
+
+3 Big Project Explanations
+
+1. Business Plan
+    - Challenges - Lead Frontend and Backend 2 Week DeadDate with constant meetings with confused person from another department
+    - Mistakes / Failures - Heavy code and unnessary requests (had to refactor later)
+    - Enjoyed - Variety of functionality (PDF, Calculations, Autosave)
+    - Leadership - Lead a team of 3 frontend developer and 1 backend developer
+    - Conflicts - Had to refactor their code to be reusable components when making the summary page
+    - What Would You Do Different - Spend more time write cleaner and less bloated code, even when under time crunch.
+    - Technologies - React.js, Larvel (PHP)
+2. Leaderboard
+    - Challenges - Figuring out how to implement ranking based on column  (Laravel didn't have ORM to support, so have to use PostgreSQL query (dense_rank))
+        - Solution - 
+            "( 
+                SELECT 
+                    *,
+                    DENSE_RANK () OVER ( ORDER BY total_appointments DESC ) rank
+                    FROM leaderboard
+                    WHERE team_id = $team->id
+                    AND week = $week
+            ) as rank"
+    - Mistakes / Failures - Unnessary re-rendering to update change on leaderboard (also had frontend checking on interval for changes, but couldn't have just waited for pusher to complete)
+    - Enjoyed - Learning new techonology and drive deeper into backend
+    - Leadership - Solo Project
+    - Conflicts - No Conflicts
+    - What Would You Do Different - Just refactor the code and make it cleaner
+    - Technologies - React.js, Laravel (PHP), PostgreSQL
+3. Custom Tables (Celebrateability - Newport Application)
+    - Challenges - Creating a server side table requires a lot of communication with backend, custom table functionality (pagination, page size, table requests, search, filter)
+        - Also Django automatic query style on its routes and I learn  needed to learn about.
+    - Mistakes / Failures - I should have learn more Django (Python) at the time, would have made communicate clearer and allow me make changes myself.
+    - Enjoyed - A big project with a lot of frontend variety and some Django sprinkles.
+    - Leadership - Lead Frontend and had to communicate with backend developer to 
+    - Conflicts - Backend developer was also new to Python so I had to remind and wait for him to complete the route and test his works repeatly
+    - What Would You Do Different - Being a frontend developer on this project and relying on someone else backend code. I would have ask the backend to test his own code, before asking me to use it. It seems like a lot of wasted time since we work different hours.
+    - Technologies - React.js, Django (Python)
+
+Strengths
+    1. Versatility/Adaptablity - Whether it's frontend, backend, or learning new lanugages & processes I'm comfortable that I'll be able to adjust and get it done.
+    2. Dependable - I'm always willing to help others, whether it's completing a task on time or answering thier questions.
+    3. I like coding - Coding has some many variety to it. It can be practical building blocks, creative solutions, and puzzling problem solving. There's always something to learn and master. Its just fun to build things.
+
+Weaknesses (Give real weaknesses)
+    1. During rush or crunch time I don't have the best attention to detail. To counteract this I make sure to always check and test my work first, even if I'm being rushed.
+        - even better if I can have someone to review/test my code.
+    2. Lack of senior level knowledge. Being a full stack and became and jack of all trades and not specialized in areas I would want. I heard this came with experience, but I'm current reading on System Design books and taking courses to deepen my knowledge.
+    3. Not taking iniative to better development process. I always felt out of placed to bring up to the team we should use or try this new techonology (Such a React Hooks, or coding standard). I should learn and read up on these standards and be more comfortable to bring them up to the team if I believe it'll help us out.
+
+Questions for Interviewer:
+    1. I would love to learn more about X. What opportunities are there at this company for me to learn about it?
+    2. How does the project planning on the team looks like? What's the interaction between developers, testers, and project managers?
+    3. Company related question.
+
+Give Structured Answers
+    - Nuggest - pull them in with brief opening to solution and situation
+    - S.A.R - Situation, Action, Result
+    - eg. story format - nuggest -> situation -> action (1-3 bullet points) -> results -> what the story says ()
+
+Story One - 
+    Business Plan - the time I need to collabrate with an pestering co-worker.
+    1.  So let me tell you about the time I had to collarate with a pestering co-worker and how I dealt with that. 
+        It was during a big rushed project building a business plan application which required the development team to work with another department for the business logic.
+        There was one person from that department that will constant ask for changes to be done daily and if the changes were wrong, he'll ask us to revert it and let him think.
+        It was annoying as he'll constant ask for rewording, calculations, and functionality changes on the fly. He was taking time away from our development time, which was only 2 weeks. 
+        So I decided to ask my manager if was okay if we implemented a ticket system were other department could create tickets seems to our developer system on Jira; that way they can correctly construct their needs. 
+        My manager took that idea to management and we now currently ticket system for other departments to request from development department; and better yet the request
+        are filtered/verified by project managers before reaching the the development team.
+    
+Tell me about yourself (structure)
+    1. Current Role (Headline Only) - I'm currently working as a Full Stack Web Developer for Tom Ferry Internationals.
+    2. College - I graduated with a Economics degree as I didn't really knew what I wanted and didn't feel smart enough to be a doctor or an engineer, so I choose something I thought business companies' would like.
+    3. Post College and Outwards - After college, I worked various jobs; cashiers, mortgage loan doc prep, cable internet salesman. Hoping that I'll end up finding a job I'll love, but it was exhausting. 
+        I really really took the time to think what I wanted to do. Somewhere along the lines of my uncle mentioning taking the Cisco Networking Certifications and looking into game development. I ended up signing up for a coding bootcamp in Irvine.
+    4. Current Role (Detail) - I ended up working a Tom Ferry Internationals as Intern and then got hired as a Junior Frontend Developer and was given a opportunity to learn PHP and Laravel and got promote to a Fullstack Developer.
+        Here I do various development work from creating frontend components, planning the relational tables, and creating REST APIs.
+    6. Wrap Up - To wrap things up, I looking for a new environment and your company's (X) interests me. As I would like to work with it and learn different processes along the way.
+
+Hobbies
+    1. Learning - sounds weird but I'm not a genius but any means. I mostly learning random and useless things like the how cheese is made, how to get better at a certain game, or the lastest smartphone. I have sneaked in some productive topics, such as Django and System Design, and it been going pretty well. 
+    2. Video Games - always loved the way story telling can be on some of these games (FFIX, FFX, Firewatch, Life is Strange, What Remains of Edith Finch), theres also a competitive nature in the game to one up the other person, and it a way for spent time with friends online.
+    3. Making things - Cooking, Building Computers, Digital Art - (it changes but it  usually) looking into mechinical keyboard and rasberry pi projects, but have more the 1 keyboard doesn't really make sense for me to have multiple keyboards, same applies to PC building, and digital art I just suck at.
+
+Big O
+    - metric used to describe efficiency of algorithm
+
+O(n) - as n gets bigger, it takes longer to run (linearly)
+O(1) - as n gets bigger, it doesn't affect runtime
+
+Ways to describe outcome of algorithm:
+    1. Best Case
+    2. Worst Case
+    3. Expected Case
+
+Space Complexity - another factor beside runtime that uses Big O
+
+Drop Constants, Non-Dominant Terms - O(n^2 + e) = o(n^2) (e. not important compare to n^2)
+
+Add vs Multiply Runtime
+    - add runtime - if "do this, when done, do that"
+    - multiply runtime - if "do this for each time you do that"
+
+Amortized Time - expensive runtime that happen only rarely.
+    - eg. a array with set amount of space
+        - appending will take O(1)
+        - when full, we need to make a new bigger array and copy array over, taking O(n)
+        - however, it usually takes O(1), this the runtime for this will be O(1), since full rarely happens.
+
+Recusive Runtime - be careful and a function that calls itself twice and loops can be O(2^n+1)
+    - watch out for depths of node
+
+Runtime Examples
+1. function (a, b) {
+    for (var i = 0; i < a.length; i++) {
+        for (var j = 0; j < b.length; j++) {
+            console.log(i + j)
+        }
+    }
+}
+    - this is not O(n^2) because there are two inputs, so it is O(ab)
+
+2. function (a) {
+    for (var i = 0; i < a.length; i++) {
+        for (var j = i + 1; j < b.length; j++) {
+            console.log(i + j)
+        }
+    }
+}
+    - the outer loop is O(n)
+    - the inner loop is missing a step every loop so (n-1) + (n-2) + (n-3) + ...  + 2, 1
+        - which is 1 throught (n - 1)
+        - sum of 1 throguht (n - 1) = n(n - 1) / 2 ~= n^2/2
+            - which is about O(n^2)
+
+Whiteboard Prepare
+    1. Try to solve the problem on your own (speak along)
+    2. Write code on paper
+    3. Test your code on paper
+    4. Type your paper code into a computer
+
+Must Know Algorithm
+    - Linked Lists, Trees, Tries, Graphs, Stacks & Queues, Heaps, Vectors / ArrayLists, Hashtable
+    - Breadth-First Search, Depth-First Search, Binary Seach, Merge Sort, Quick Sort
+    - Bit Manipulation, Memory (Stack vs Heap), Recursion, Dynamic Programming, Big O Time & Space
+
+Power of 2 Table (get/type pg 61)
+
+How to Solve Problem
+    1. Listen - every detail (write down)
+    2. Example - draw an example that is large enough (to cover other cases), specific, not a special case. Debug example for too small or special case
+    3. Brute Force - brute force first, but don't code, then optimized from there
+    4. Optimize - check for unused info, solve manual, reverse engineer on how you solved, solve "incorrectly" and look for issue, hash table for time vs space tradeoff
+        - BUD Optimization
+            - Bottlenecks
+            - Unnessary work
+            - Duplicate work
+    5. Walk Through - with optimize solution, walk through your approach in detail
+    6. Implement - Modularize and refactor to clean up
+    7. Test - unusual code, hot spots (arithmetic and null nodes), small test cases, special case, and edges
+
+
+
+
